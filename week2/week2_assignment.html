@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week2 assignment</title>
+  </head>
+
+  <body>
+    <!-- task1 -->
+    <script>
+      //
+      console.log("--- task 1 ---");
+
+      function findAndPrint(messages, currentStation) {
+        let greenLine = {
+          Songshan: 1,
+          "Nanjing Sanmin": 2,
+          "Taipei Arena": 3,
+          "Nanjing Fuxing": 4,
+          "Songjiang Nanking": 5,
+          Zhongshan: 6,
+          Beimen: 7,
+          Ximen: 8,
+          Xiaonanmen: 9,
+          "Chiang Kai-Shek Memorial Hall": 10,
+          Guting: 11,
+          "Taipower Building": 12,
+          Gongguan: 13,
+          Wanlong: 14,
+          Jingmei: 15,
+          Dapinling: 16,
+          Qizhang: 17,
+          "Xindian City Hall": 18,
+          Xindian: 19,
+          Xiaobitan: 18,
+        };
+        let name2station = {};
+
+        // 字串處裡
+        Object.keys(messages).forEach((name) => {
+          Object.keys(greenLine).forEach((station) => {
+            if (messages[name].includes(station)) {
+              // console.log(name + " " + messages[name] + " " + station);
+              name2station[name] = station;
+            }
+          });
+        });
+
+        // 計算距離
+        let nearest;
+        let min = 18;
+        Object.entries(name2station).forEach((friend) => {
+          let distance = Math.abs(
+            greenLine[currentStation] - greenLine[friend[1]]
+          );
+
+          // 謝謝你小碧潭
+          if (currentStation != friend[1]) {
+            if (currentStation == "Xiaobitan" || friend[1] == "Xiaobitan") {
+              if (
+                currentStation == "Xindian City Hall" ||
+                currentStation == "Xindian" ||
+                friend[1] == "Xindian City Hall" ||
+                friend[1] == "Xindian"
+              ) {
+                distance += 2;
+              }
+            }
+          }
+
+          if (min > distance) {
+            min = distance;
+            nearest = friend[0];
+          } //else if (min == distance)
+        });
+        console.log(nearest);
+      }
+
+      const messages = {
+        Bob: "I'm at Ximen MRT station.",
+        Mary: "I have a drink near Jingmei MRT station.",
+        Copper: "I just saw a concert at Taipei Arena.",
+        Leslie: "I'm at home near Xiaobitan station.",
+        Vivian: "I'm at Xindian station waiting for you.",
+      };
+
+      findAndPrint(messages, "Wanlong"); // print Mary
+      findAndPrint(messages, "Songshan"); // print Copper
+      findAndPrint(messages, "Qizhang"); // print Leslie
+      findAndPrint(messages, "Ximen"); // print Bob
+      findAndPrint(messages, "Xindian City Hall"); // print Vivian
+    </script>
+    <!-- task2 -->
+    <script>
+      console.log("--- task2 ---");
+      // your code here, maybe
+      let john = [...Array(24).keys()];
+      let bob = [...Array(24).keys()];
+      let jenny = [...Array(24).keys()];
+
+      function book(consultants, hour, duration, criteria) {
+        // your code here
+      }
+      const consultants = [
+        { name: "John", rate: 4.5, price: 1000 },
+        { name: "Bob", rate: 3, price: 1200 },
+        { name: "Jenny", rate: 3.8, price: 800 },
+      ];
+      // book(consultants, 15, 1, "price"); // Jenny
+      // book(consultants, 11, 2, "price"); // Jenny
+      // book(consultants, 10, 2, "price"); // John
+      // book(consultants, 20, 2, "rate"); // John
+      // book(consultants, 11, 1, "rate"); // Bob
+      // book(consultants, 11, 2, "rate"); // No Service
+      // book(consultants, 14, 3, "price"); // John
+    </script>
+  </body>
+</html>

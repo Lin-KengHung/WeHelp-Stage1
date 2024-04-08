@@ -95,7 +95,7 @@ body main section.picture div.mainContent div.buttom div.bigBox {
   align-items: center;
   height: 210px;
 }
-body main section.picture div.mainContent div.buttom div.bigBox div.outerEdge {
+body main section.picture div.mainContent div.buttom div.bigBox .outerEdge {
   position: absolute;
   top: 10px;
   bottom: 10px;
@@ -105,7 +105,7 @@ body main section.picture div.mainContent div.buttom div.bigBox div.outerEdge {
   flex-direction: column;
   display: flex;
 }
-body main section.picture div.mainContent div.buttom div.bigBox div.outerEdge img.main {
+body main section.picture div.mainContent div.buttom div.bigBox .outerEdge img.main {
   -o-object-fit: cover;
      object-fit: cover;
   position: absolute;
@@ -113,7 +113,7 @@ body main section.picture div.mainContent div.buttom div.bigBox div.outerEdge im
   width: 100%;
   height: 100%;
 }
-body main section.picture div.mainContent div.buttom div.bigBox div.outerEdge img.icon {
+body main section.picture div.mainContent div.buttom div.bigBox .outerEdge img.icon {
   position: absolute;
   z-index: 5;
   top: 0;
@@ -121,7 +121,7 @@ body main section.picture div.mainContent div.buttom div.bigBox div.outerEdge im
   width: 20px;
   height: 20px;
 }
-body main section.picture div.mainContent div.buttom div.bigBox div.outerEdge p {
+body main section.picture div.mainContent div.buttom div.bigBox .outerEdge p {
   position: absolute;
   buttom: 0;
   padding: 10px;
