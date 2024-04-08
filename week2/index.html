@@ -95,22 +95,36 @@
     <script>
       console.log("--- task2 ---");
       // your code here, maybe
-      let john = [...Array(24).keys()];
-      let bob = [...Array(24).keys()];
-      let jenny = [...Array(24).keys()];
+      // let john = [...Array(24).keys()];
+      // let bob = [...Array(24).keys()];
+      // let jenny = [...Array(24).keys()];
 
       function book(consultants, hour, duration, criteria) {
         // your code here
+        switch (criteria) {
+          case "price":
+            console.log("price");
+            break;
+          case "rate":
+            console.log("rate");
+            break;
+        }
       }
+
       const consultants = [
         { name: "John", rate: 4.5, price: 1000 },
         { name: "Bob", rate: 3, price: 1200 },
         { name: "Jenny", rate: 3.8, price: 800 },
       ];
-      // book(consultants, 15, 1, "price"); // Jenny
+      // consultants[0].time = [1, 2, 3];
+      for (let i = 0; i < consultants.length; i++) {
+        consultants[i].time = [...Array(24).keys()];
+      }
+
+      book(consultants, 15, 1, "price"); // Jenny
       // book(consultants, 11, 2, "price"); // Jenny
       // book(consultants, 10, 2, "price"); // John
-      // book(consultants, 20, 2, "rate"); // John
+      book(consultants, 20, 2, "rate"); // John
       // book(consultants, 11, 1, "rate"); // Bob
       // book(consultants, 11, 2, "rate"); // No Service
       // book(consultants, 14, 3, "price"); // John
