@@ -94,20 +94,68 @@
     <!-- task2 -->
     <script>
       console.log("--- task2 ---");
-      // your code here, maybe
-      // let john = [...Array(24).keys()];
-      // let bob = [...Array(24).keys()];
-      // let jenny = [...Array(24).keys()];
+
+      let schedule = {
+        John: [
+          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+          21, 22, 23, 24,
+        ],
+
+        Bob: [
+          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+          21, 22, 23, 24,
+        ],
+
+        Jenny: [
+          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+          21, 22, 23, 24,
+        ],
+      };
 
       function book(consultants, hour, duration, criteria) {
-        // your code here
+        let nameOrder = [];
+        //處理考慮rate或price的問題，sort array
         switch (criteria) {
           case "price":
-            console.log("price");
+            consultants.sort(function (a, b) {
+              return a.price > b.price ? 1 : -1;
+            });
             break;
+
           case "rate":
-            console.log("rate");
+            consultants.sort(function (a, b) {
+              return a.rate < b.rate ? 1 : -1;
+            });
             break;
+        }
+
+        consultants.forEach((obj) => {
+          nameOrder.push(obj.name);
+        });
+        // console.log(nameOrder);
+
+        // 處理時間問題;
+        //看人
+        for (let i = 0; i < nameOrder.length; i++) {
+          // nameOrder[i] 就是人名
+          let end = false;
+          // 看時間
+          for (let j = 0; j < schedule[nameOrder[i]].length; j++) {
+            if (
+              schedule[nameOrder[i]][j] == hour &&
+              schedule[nameOrder[i]][j + duration] == hour + duration
+            ) {
+              console.log("就決定是你了" + nameOrder[i]);
+              schedule[nameOrder[i]].splice(j, duration);
+              end = true;
+              break;
+            }
+          }
+          if (end) {
+            break;
+          } else if (i == nameOrder.length - 1) {
+            console.log("下次請早");
+          }
         }
       }
 
@@ -117,17 +165,71 @@
         { name: "Jenny", rate: 3.8, price: 800 },
       ];
       // consultants[0].time = [1, 2, 3];
-      for (let i = 0; i < consultants.length; i++) {
-        consultants[i].time = [...Array(24).keys()];
-      }
 
       book(consultants, 15, 1, "price"); // Jenny
-      // book(consultants, 11, 2, "price"); // Jenny
-      // book(consultants, 10, 2, "price"); // John
+      book(consultants, 11, 2, "price"); // Jenny
+      book(consultants, 10, 2, "price"); // John
       book(consultants, 20, 2, "rate"); // John
-      // book(consultants, 11, 1, "rate"); // Bob
-      // book(consultants, 11, 2, "rate"); // No Service
-      // book(consultants, 14, 3, "price"); // John
+      book(consultants, 11, 1, "rate"); // Bob
+      book(consultants, 11, 2, "rate"); // No Service
+      book(consultants, 14, 3, "price"); // John
+    </script>
+    <!-- task3 -->
+    <script>
+      console.log("--- task3 ---");
+
+      function func(...data) {
+        // 切中間名
+        let midName = [];
+        for (let i = 0; i < data.length; i++) {
+          let mid = Math.floor(data[i].length / 2);
+          midName.push(data[i][mid]);
+        }
+        // 數次數
+        let times = {};
+        midName.forEach((word) => {
+          if (word in times) {
+            times[word]++;
+          } else {
+            times[word] = 1;
+          }
+        });
+        // print出只有一次的
+        for (let i = 0; i < midName.length; i++) {
+          if (times[midName[i]] == 1) {
+            console.log(data[i]);
+            break;
+          } else if (i == midName.length - 1) {
+            console.log("沒有");
+          }
+        }
+      }
+      func("彭大牆", "陳王明雅", "吳明"); // print 彭大牆
+      func("郭靜雅", "王立強", "郭林靜宜", "郭立恆", "林花花"); // print 林花花
+      func("郭宣雅", "林靜宜", "郭宣恆", "林靜花"); // print 沒有
+      func("郭宣雅", "夏曼藍波安", "郭宣恆"); // print 夏曼藍波安
+    </script>
+    <!-- task4 -->
+    <script>
+      console.log("--- task4 ---");
+      function getNumber(index) {
+        // your code here
+        let n = 0;
+        for (let i = 1; i <= index; i++) {
+          if (i % 3 == 0) {
+            n -= 1;
+          } else {
+            n += 4;
+          }
+          // console.log(n);
+        }
+        console.log(n);
+        // console.log("next");
+      }
+      getNumber(1); // print 4
+      getNumber(5); // print 15
+      getNumber(10); // print 25
+      getNumber(30); // print 70
     </script>
   </body>
 </html>
