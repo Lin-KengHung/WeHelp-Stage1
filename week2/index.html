@@ -216,11 +216,7 @@
         // your code here
         let n = 0;
         for (let i = 1; i <= index; i++) {
-          if (i % 3 == 0) {
-            n -= 1;
-          } else {
-            n += 4;
-          }
+          i % 3 == 0 ? (n -= 1) : (n += 4);
           // console.log(n);
         }
         console.log(n);
@@ -230,6 +226,25 @@
       getNumber(5); // print 15
       getNumber(10); // print 25
       getNumber(30); // print 70
+    </script>
+    <!-- task5 -->
+    <script>
+      console.log("--- task5 ---");
+      function find(spaces, stat, n) {
+        let car = -1;
+        min = Math.max(...spaces);
+        // console.log(min);
+        for (let i = 0; i < spaces.length; i++) {
+          if (stat[i] == 1 && min > spaces[i] - n && spaces[i] - n >= 0) {
+            min = spaces[i] - n;
+            car = i;
+          }
+        }
+        console.log(car);
+      }
+      find([3, 1, 5, 4, 3, 2], [0, 1, 0, 1, 1, 1], 2); // print 5
+      find([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4); // print -1
+      find([4, 6, 5, 8], [0, 1, 1, 1], 4); // print 2
     </script>
   </body>
 </html>
