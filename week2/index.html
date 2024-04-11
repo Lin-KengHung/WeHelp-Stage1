@@ -95,23 +95,7 @@
     <script>
       console.log("--- task2 ---");
 
-      let schedule = {
-        John: [
-          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-          21, 22, 23, 24,
-        ],
-
-        Bob: [
-          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-          21, 22, 23, 24,
-        ],
-
-        Jenny: [
-          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-          21, 22, 23, 24,
-        ],
-      };
-
+      let schedule = {};
       function book(consultants, hour, duration, criteria) {
         let nameOrder = [];
         //處理考慮rate或price的問題，sort array
@@ -138,6 +122,13 @@
         //看人
         for (let i = 0; i < nameOrder.length; i++) {
           // nameOrder[i] 就是人名
+
+          if (!(nameOrder[i] in schedule)) {
+            schedule[nameOrder[i]] = [];
+            for (let n = 0; n < 25; n++) {
+              schedule[nameOrder[i]].push(n);
+            }
+          }
           let end = false;
           // 看時間
           for (let j = 0; j < schedule[nameOrder[i]].length; j++) {

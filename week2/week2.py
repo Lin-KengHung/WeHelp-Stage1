@@ -66,16 +66,10 @@ find_and_print(messages, "Xindian City Hall") # print Vivian
 # -------------task2-------------
 # your code here, maybe
 print("---task2---")
-schedule = {
-    "John" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-          21, 22, 23, 24],
-    "Bob" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-          21, 22, 23, 24],
-    "Jenny" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-            21, 22, 23, 24]
 
-}
+schedule = {}
 def book(consultants, hour, duration, criteria):
+
     match criteria:
         case "price":
            consultants.sort(key=lambda x: x["price"])
@@ -85,6 +79,10 @@ def book(consultants, hour, duration, criteria):
     #  booking = list(range(hour, duration))??
 
     for request in consultants:
+        ###-----correct-----
+        if request["name"] not in schedule.keys():
+            schedule[request["name"]] = list(range(24))
+        ###-----correct-----
         breakOuterLoop = False
         for time in range(len(schedule[request["name"]])):
             if schedule[request["name"]][time] == hour and schedule[request["name"]][time + duration] == hour + duration:
@@ -98,7 +96,7 @@ def book(consultants, hour, duration, criteria):
             break
     else:
         print("下次請早")    
-# your code here
+
 consultants = [
     {"name":"John", "rate":4.5, "price":1000},
     {"name":"Bob", "rate":3, "price":1200},
