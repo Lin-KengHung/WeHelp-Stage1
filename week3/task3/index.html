@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h3>My Website</h3>
+      <nav>
+        <button id="burger">
+          <img src="./line_list_menu_nav_icon.png" alt="三" />
+        </button>
+
+        <ul>
+          <button id="closeBtn">X</button>
+          <li>Item1</li>
+          <li>Item2</li>
+          <li>Item3</li>
+          <li>Item4</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="welcome">
+        <h1>Welcome to MyHome</h1>
+      </section>
+      <section class="picture">
+        <div class="mainContent">
+          <div class="top">
+            <div class="smallBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" />
+                <p>Promotion 1</p> -->
+              </div>
+            </div>
+
+            <div class="smallBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" />
+                <p>Promotion 2</p> -->
+              </div>
+            </div>
+
+            <div class="smallBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" />
+                <p>Promotion 3</p> -->
+              </div>
+            </div>
+          </div>
+          <div class="buttom">
+            <div class="bigBox bigger">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 1</p> -->
+              </div>
+            </div>
+            <div class="bigBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 2</p> -->
+              </div>
+            </div>
+            <div class="bigBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 3</p> -->
+              </div>
+            </div>
+            <div class="bigBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 4</p> -->
+              </div>
+            </div>
+            <div class="bigBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 5</p> -->
+              </div>
+            </div>
+            <div class="bigBox bigger">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 6</p> -->
+              </div>
+            </div>
+            <div class="bigBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 7</p> -->
+              </div>
+            </div>
+            <div class="bigBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 8</p> -->
+              </div>
+            </div>
+            <div class="bigBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 9</p> -->
+              </div>
+            </div>
+            <div class="bigBox">
+              <div class="outerEdge">
+                <!-- <img src="./picture.jpg" alt="圖" class="main" /> -->
+                <img src="./star_icon.png" alt="icon" class="icon" />
+                <!-- <p>Title 10</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      let burger = document.querySelector("#burger");
+      let ul = document.querySelector("ul");
+      let closeBtn = document.querySelector("#closeBtn");
+
+      burger.addEventListener("click", () => {
+        ul.style.display = "flex";
+      });
+      closeBtn.addEventListener("click", () => {
+        ul.style.display = "none";
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 600) {
+          ul.style.display = "flex";
+        } else {
+          ul.style.display = "none";
+        }
+      });
+    </script>
+    <script src="./app.js"></script>
+  </body>
+</html>
