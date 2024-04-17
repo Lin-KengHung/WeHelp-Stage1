@@ -16,6 +16,14 @@ def getData(url, file):
         line = []
         if title.a != None:
             line.append(title.a.string)
+            
+            like = title.find_previous_sibling("div", class_="nrec")
+            # print(like.span.string)
+            if (like.find("span", class_="hl f2") != None):
+                line.append(like.span.string)
+            else:
+                line.append("0")
+
             href = "https://www.ptt.cc" + title.find("a")["href"]
             
 
@@ -28,16 +36,18 @@ def getData(url, file):
            
             root2 = BeautifulSoup(data2, "html.parser")
 
-            # 計算推噓總數
-            like = root2.find_all("span", class_="hl push-tag", string="推 ")
-            dislike = root2.find_all("span", class_="f1 hl push-tag", string="噓 ")
-            count = len(like) + len(dislike)
-            line.append(str(count))
+            # # 計算推噓總數
+            # like = root2.find_all("span", class_="hl push-tag", string="推 ")
+            # dislike = root2.find_all("span", class_="f1 hl push-tag", string="噓 ")
+            # count = len(like) + len(dislike)
+            # line.append(str(count))
             
             # 抓時間
             if (root2.find("span", string="時間") != None and root2.find("span", string="時間").find_next("span") != None):
                 time =  root2.find("span", string="時間").find_next("span").string
                 line.append(time)
+            else:
+                line.append("")    
             
         else:
             continue
