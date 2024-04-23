@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 4 asignment</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="header">
+      <h2>{{header}}</h2>
+    </header>
+    <main>
+      <section class="main">
+        <form class="login" action="/signin" method="post">
+          <h3>登入系統</h3>
+          <div class="inputbox">
+            <label for="username">帳號 </label>
+            <input id="username" type="text" name="username" />
+          </div>
+          <div class="inputbox">
+            <label for="password">密碼 </label>
+            <input id="password" type="password" name="password" />
+          </div>
+          <div class="inputbox">
+            <label for="agree">同意條款</label>
+            <input type="checkbox" name="agree" id="agree" />
+          </div>
+          <button type="submit" id="submit">登入</button>
+        </form>
+      </section>
+    </main>
+    <script>
+      let form = document.querySelector("form");
+      let check = document.querySelector("input[type=checkbox]");
+      form.addEventListener("submit", (e) => {
+        if (!check.checked) {
+          e.preventDefault();
+          alert("Please checkthe checkbox first");
+        }
+      });
+    </script>
+  </body>
+</html>
