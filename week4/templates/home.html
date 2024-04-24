@@ -29,14 +29,39 @@
           <button type="submit" id="submit">登入</button>
         </form>
       </section>
+      <hr />
+      <section class="square">
+        <h3>計算正整數的平方</h3>
+        <form action="" method="GET">
+          <div>
+            <label for="int">正整數</label>
+            <input type="number" id="int" />
+          </div>
+          <button type="submit" id="caculate">計算</button>
+        </form>
+      </section>
     </main>
     <script>
-      let form = document.querySelector("form");
+      // login part
+      let loginForm = document.querySelector(".login");
       let check = document.querySelector("input[type=checkbox]");
-      form.addEventListener("submit", (e) => {
+      loginForm.addEventListener("submit", (e) => {
         if (!check.checked) {
           e.preventDefault();
           alert("Please checkthe checkbox first");
+        }
+      });
+      // square part
+      let squareForm = document.querySelector(".square");
+      squareForm.addEventListener("submit", (e) => {
+        let number = document.querySelector("#int");
+
+        if (number.value && number.value > 0) {
+          e.preventDefault();
+          number = document.querySelector("#int");
+          document.location.href = "/square/" + number.value;
+        } else {
+          alert("Please input positive integer");
         }
       });
     </script>

@@ -5,20 +5,25 @@ from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import Annotated
+from starlette.middleware.sessions import SessionMiddleware
+
 
 
 app = FastAPI()
+app.add_middleware(SessionMiddleware, secret_key="some-random-string", max_age=None)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)
 async def landing(request: Request):
-    return templates.TemplateResponse(request=request, name="login.html", context={"header": "歡迎光臨，請輸入帳號密碼"})
+
+    return templates.TemplateResponse(request=request, name="home.html", context={"header": "歡迎光臨，請輸入帳號密碼"})
 
 @app.post("/signin")
-async def login(request: Request, username: Annotated[str, Form()]=None, password: Annotated[str, Form()]=None):
+async def signin(request: Request, username: Annotated[str, Form()]=None, password: Annotated[str, Form()]=None):
     if username == "test" and password == "test":
+        request.session["login"] = "yes"
         return RedirectResponse(url="/member", status_code=status.HTTP_303_SEE_OTHER)
     elif(username is None or password is None):
         message = "請輸入帳號密碼"
@@ -30,10 +35,21 @@ async def login(request: Request, username: Annotated[str, Form()]=None, passwor
 
 @app.get("/member")
 async def show_member_page(request: Request):
-    return templates.TemplateResponse(request=request, name="member.html", context={"header": "這裡是會員頁面", "message": "成功登入啦！"})
+    login = request.session.get("login", None)
+    if (login == "yes"):
+        return templates.TemplateResponse(request=request, name="page2.html", context={"header": "這裡是會員頁面", "message": "成功登入啦！", "signout_url": "/signout", "logout": "登出系統"})
+    else:
+        return RedirectResponse(url="/")   
 
 @app.get("/error")
-async def show_error_page(request: Request, response_class=HTMLResponse , message: str | None = None):
-    
-    return templates.TemplateResponse(request=request, name="error.html", context={"header": "登入失敗", "message": message})
+async def show_error_page(request: Request , message: str | None = None):
+    return templates.TemplateResponse(request=request, name="page2.html", context={"header": "登入失敗", "message": message, "signout_url": "/", "logout": "回去重登"})
 
+@app.get("/signout")
+async def signout(request: Request):
+    request.session.clear()
+    return RedirectResponse(url="/")
+
+@app.get("/square/{number}")
+async def square(request: Request, number):
+    return templates.TemplateResponse(request=request, name="page2.html", context={"header": "正整數平方計算的結果", "message": int(number)**2, "signout_url": "/", "logout": "返回首頁"})
