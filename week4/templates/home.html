@@ -61,7 +61,9 @@
           number = document.querySelector("#int");
           document.location.href = "/square/" + number.value;
         } else {
+          e.preventDefault();
           alert("Please input positive integer");
+          number.value = NaN;
         }
       });
     </script>
