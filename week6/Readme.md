@@ -1,4 +1,4 @@
-# Week6 asignment 
+# Week6 assignment 
 
 ## Core-concept and Solution
 ### user status part
