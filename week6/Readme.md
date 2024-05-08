@@ -4,7 +4,7 @@
 
 ### user status part
 
-1. user status are recorded by signed cookie-base session (all of information are set at signed cookie), name is cookie-token
+1. user status(user id) are recorded by signed cookie-base session (all of information are set at signed cookie), name is cookie-token
 2. signer: python package "itsdangerous"
 3. if cookie was modified, return error message
 

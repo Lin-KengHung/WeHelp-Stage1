@@ -42,10 +42,9 @@ async def signup(signupName: str = Form(default=None), signupUsername: str = For
 @app.post("/signin")
 async def signin(response: Response, username: str = Form(default=None), password: str = Form(default=None)):
     if (check_user(username, password)):
-        [id, name] = check_user(username, password)
-        print("id=" + str(id) + "name=" + str(name))
+        id = check_user(username, password)
         response = RedirectResponse(url="/member",  status_code=status.HTTP_303_SEE_OTHER)
-        token = make_signed_cookie_token(id, name)
+        token = make_signed_cookie_token(id)
         response.set_cookie(key="cookie_token", value=token.decode('utf-8'), max_age=3600)
         return response
     else:
@@ -56,6 +55,8 @@ async def signin(response: Response, username: str = Form(default=None), passwor
 async def show_member_page(request: Request, cookie_token: str = Cookie(default=None)):
     if (cookie_token != None):
         user_info = unsigned_cookie_token(cookie_token.encode())
+
+        # get messaage information
         mycursor.execute("SELECT message.id, message.content, member.id, member.name FROM message JOIN member ON message.member_id = member.id ORDER BY message.id")
         all_messages = mycursor.fetchall()
         print(all_messages)
@@ -67,7 +68,12 @@ async def show_member_page(request: Request, cookie_token: str = Cookie(default=
             else:
                 info[2] = False
             process_messages.append(info)
-        context = {"header": "這裡是會員頁面", "message": user_info["name"] + "，歡迎登入系統", "signout_url": "/signout", "logout": "登出系統", "board": process_messages}
+
+        # get name
+        mycursor.execute("SELECT name FROM member WHERE id = %s", (user_info["id"],))
+        name = mycursor.fetchone()[0]
+
+        context = {"header": "這裡是會員頁面", "name": name + "，歡迎登入系統", "signout_url": "/signout", "logout": "登出系統", "board": process_messages}
         return templates.TemplateResponse(request=request, name="member.html", context=context)
     else:
         return RedirectResponse(url="/") 
@@ -123,14 +129,14 @@ def check_user(username, password=None):
         if username == member[2] and password == None:
             return True
         elif username == member[2] and password == member[3]:
-            return [member[0],member[1]]
+            return member[0]
     return False
 
 SECRET_KEY = "mysterymysterymystery"
 signer = Signer(SECRET_KEY)
 
-def make_signed_cookie_token(id, name):
-    cookie = {"id": id, "name": name}
+def make_signed_cookie_token(id):
+    cookie = {"id": id}
     flatten_cookie = json.dumps(cookie).encode('utf-8')
     signed_cookie = signer.sign(flatten_cookie)
     return signed_cookie
