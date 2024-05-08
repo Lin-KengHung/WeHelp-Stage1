@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
+    <!-- <link href="../static/styles.css" rel="stylesheet" /> -->
+  </head>
+  <body>
+    <header class="header">
+      <h2>{{header}}</h2>
+    </header>
+    <main>
+      <!-- 歡迎登入系統語句 -->
+      <section class="main">
+        <p>{{message}}</p>
+        <p><a href="{{signout_url}}">{{logout}}</a></p>
+      </section>
+      <hr />
+      <!-- 輸入留言 -->
+      <section class="leave_contents">
+        <h3>快來留言吧</h3>
+        <form class="content" action="/createMessage" method="POST">
+          <div class="inputbox">
+            <label for="username">內容 </label>
+            <input id="message" type="text" name="message" />
+          </div>
+          <button type="submit" id="messageSubmit">送出</button>
+        </form>
+      </section>
+      <hr />
+      <!-- 留言板 -->
+      <section class="show_contents {{ username }}">
+        {% for message in board %}
+        <div class="message {{ message[2] }}" id="{{ message[0] }}">
+          <div class="name">{{ message[1] }}</div>
+          <div class="content">{{ message[3] }}</div>
+          {% if message[2] == username%}
+          <button class="trash"><i class="fa-solid fa-trash"></i></button>
+          {% else %}
+          <div class="trash"></div>
+          {% endif %}
+        </div>
+
+        {% endfor %}
+      </section>
+    </main>
+    <script src="{{ url_for('static', path='/member.js') }}"></script>
+  </body>
+</html>
