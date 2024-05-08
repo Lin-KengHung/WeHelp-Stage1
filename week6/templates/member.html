@@ -38,12 +38,13 @@
       </section>
       <hr />
       <!-- 留言板 -->
-      <section class="show_contents {{ username }}">
+      <section class="show_contents">
         {% for message in board %}
-        <div class="message {{ message[2] }}" id="{{ message[0] }}">
-          <div class="name">{{ message[1] }}</div>
-          <div class="content">{{ message[3] }}</div>
-          {% if message[2] == username%}
+        <div class="message" id="{{ message[0] }}">
+          <div class="name">{{ message[3] }}</div>
+          <div class="content">{{ message[1] }}</div>
+
+          {% if message[2]%}
           <button class="trash"><i class="fa-solid fa-trash"></i></button>
           {% else %}
           <div class="trash"></div>

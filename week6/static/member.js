@@ -16,12 +16,12 @@ deleteBtns.forEach((btn) => {
     let messageID = btn.parentElement.id;
     let answer = confirm("Are you sure about that???");
     if (answer === true) {
-      PostDataByForm(btn, messageID);
+      PostDataByForm(messageID);
     }
   });
 });
 
-function PostDataByForm(btn, data) {
+function PostDataByForm(data) {
   let form = document.createElement("form");
   form.method = "POST";
   form.action = "/deleteMessage";
