@@ -59,7 +59,6 @@ async def show_member_page(request: Request, cookie_token: str = Cookie(default=
         # get messaage information
         mycursor.execute("SELECT message.id, message.content, member.id, member.name FROM message JOIN member ON message.member_id = member.id ORDER BY message.id")
         all_messages = mycursor.fetchall()
-        print(all_messages)
         process_messages = []
         for info in all_messages:
             info = list(info)
@@ -121,8 +120,7 @@ async def signout(response: Response):
 
 
 def check_user(username, password=None):
-    print("username= " + username)
-    print("password=" + str(password))
+
     mycursor.execute("SELECT * FROM member")
     myresult = mycursor.fetchall()
     for member in myresult: 
