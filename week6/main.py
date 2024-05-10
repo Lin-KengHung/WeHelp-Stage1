@@ -8,7 +8,7 @@ import mysql.connector
 from itsdangerous import Signer, BadSignature
 import json
 
-
+## test i am main##
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
