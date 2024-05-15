@@ -1,0 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body header {
+  width: 100%;
+  text-align: center;
+  background-color: rgb(34, 51, 68);
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body header h2 {
+  color: white;
+}
+body main section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5vh 0px;
+}
+body main section form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body main section form div {
+  padding: 0.3rem;
+}
+body main section form button {
+  padding: 0.2rem;
+}
+
+body main section.show_contents div.message {
+  display: flex;
+  padding: 0.2rem;
+  width: 40%;
+  align-items: center;
+  position: relative;
+}
+body main section.show_contents div.message div {
+  padding: 0.2rem;
+}
+
+body main section.show_contents div.message div.name {
+  font-weight: bold;
+  /* border: 2px solid red; */
+  position: relative;
+  left: 0px;
+}
+body main section.show_contents div.message div.content {
+  position: absolute;
+  left: 200px;
+}
+
+body main section.show_contents div.message .trash {
+  padding: 0.2rem;
+  position: absolute;
+  right: 0px;
+  background-color: white;
+  border: none;
+}
+body main section.show_contents div.message button.trash:hover {
+  cursor: pointer;
+}

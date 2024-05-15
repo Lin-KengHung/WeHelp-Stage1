@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
+    <!-- <link href="../static/styles.css" rel="stylesheet" /> -->
+  </head>
+  <body>
+    <header class="header">
+      <h2>{{header}}</h2>
+    </header>
+    <main>
+      <!-- 註冊 -->
+      <section class="register">
+        <h3>註冊帳號</h3>
+        <form class="register" action="/signup" method="post">
+          <div class="inputbox">
+            <label for="signupName">姓名 </label>
+            <input id="signupName" type="text" name="signupName" />
+          </div>
+          <div class="inputbox">
+            <label for="signupUsername">帳號 </label>
+            <input id="signupUsername" type="text" name="signupUsername" />
+          </div>
+          <div class="inputbox">
+            <label for="signupPassword">密碼 </label>
+            <input id="signupPassword" type="password" name="siguupPassword" />
+          </div>
+          <button type="submit" id="submit">註冊</button>
+        </form>
+      </section>
+      <hr />
+      <!-- 登入 -->
+      <section class="login">
+        <h3>登入系統</h3>
+        <form class="login" action="/signin" method="post">
+          <div class="inputbox">
+            <label for="username">帳號 </label>
+            <input id="username" type="text" name="username" />
+          </div>
+          <div class="inputbox">
+            <label for="password">密碼 </label>
+            <input id="password" type="password" name="password" />
+          </div>
+          <button type="submit" id="signinSubmit">登入</button>
+        </form>
+      </section>
+    </main>
+    <script src="{{ url_for('static', path='/home.js') }}"></script>
+  </body>
+</html>
