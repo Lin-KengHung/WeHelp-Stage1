@@ -20,7 +20,7 @@ async def name_query(username : str):
     response = response.model_dump()
     return response
 
-@router.patch("/rename", response_model = UpdateOut, response_model_exclude_unset=True)
+@router.patch("/member", response_model = UpdateOut, response_model_exclude_unset=True)
 async def rename(new_name: RenameIn, cookie_token:  str  = Cookie()):
     try:
         user_id = unsigned_cookie_token(cookie_token)

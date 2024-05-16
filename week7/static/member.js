@@ -64,7 +64,7 @@ let renameBtn = document.querySelector("button#rename");
 renameBtn.addEventListener("click", async (e) => {
   let newName = document.querySelector("input#rename").value;
   if (newName) {
-    url = "/api/rename";
+    url = "/api/member";
     let data = {
       name: document.querySelector("input#rename").value,
     };
