@@ -13,6 +13,9 @@
     <button id="google" onclick="sendRequestGoogle(this)">
       google home page
     </button>
+    <button id="test" onclick="sendRequestTest(this)">
+      get test json data
+    </button>
   </body>
   <script>
     async function sendRequestPadax(btn) {
@@ -29,6 +32,14 @@
         mode: "no-cors",
       });
       //   response = await response.json();
+      console.log(response);
+    }
+    async function sendRequestTest() {
+      let url = "https://www.google.com/";
+      let response = await fetch(url, {
+        method: "GET",
+      });
+      response = await response.json();
       console.log(response);
     }
   </script>
