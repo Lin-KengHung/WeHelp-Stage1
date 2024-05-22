@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task4 try CORS</title>
+  </head>
+  <body>
+    <h1>丟出request</h1>
+    <button id="padax" onclick="sendRequestPadax(this)">
+      taipei-day-trip-data
+    </button>
+    <button id="google" onclick="sendRequestGoogle(this)">
+      google home page
+    </button>
+  </body>
+  <script>
+    async function sendRequestPadax(btn) {
+      let url =
+        "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json";
+      let response = await fetch(url, { method: "GET" });
+      //   response = await response.json();
+      console.log(response);
+    }
+    async function sendRequestGoogle(btn) {
+      let url = "https://www.google.com/";
+      let response = await fetch(url, {
+        method: "GET",
+        mode: "no-cors",
+      });
+      //   response = await response.json();
+      console.log(response);
+    }
+  </script>
+</html>
